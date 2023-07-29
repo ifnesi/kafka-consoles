@@ -27,8 +27,8 @@ Run the script `./start.sh` to start the demo.
   organization:
      name: Home
   admin:
-     email: <as per created on consuktor.io>
-     password: <as per created on consuktor.io>
+     email: <as per created on conduktor.io>
+     password: <as per created on conduktor.io>
   ```
   - Upload the YAML file
   - http://localhost:8080
