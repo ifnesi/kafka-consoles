@@ -30,7 +30,7 @@ Run the script `./start.sh` to start the demo.
   ```
   - Access the console: http://localhost:8080
   - Upload the YAML file (option `Upload YAML`) and sign-in
-  - End points to be setup:
+  - Endpoints (for when setting up your Kafka cluster on the console)):
     - Kafka Broker: broker:9094 (auth None)
     - Kafka connect: http://connect:8083 (no security)
     - Schema Registry: http://schema-registry:8081 (no security)
