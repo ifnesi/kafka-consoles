@@ -2,7 +2,7 @@
 Try out three Kafka Consoles:
 - [Confluent Control Center](https://docs.confluent.io/platform/current/control-center/index.html)
 - [Kafka UI](https://github.com/provectus/kafka-ui)
-- [Conduktor console](https://docs.conduktor.io/platform/console/)
+- [Conduktor console](https://docs.conduktor.io/platform/console)
 
 
 ## Requirements:
@@ -38,3 +38,12 @@ Run the script `./start.sh` to start the demo.
 
 ## Stop the demo
 Run the script `./stop.sh` to stop the demo.
+
+# External References
+- Confluent Control Center: https://docs.confluent.io/platform/current/control-center/index.html
+- Kafka UI: https://github.com/provectus/kafka-ui
+- Conduktor console: https://docs.conduktor.io/platform/console
+
+Check out [Confluent's Developer portal](https://developer.confluent.io), it has free courses, documents, articles, blogs, podcasts and so many more content to get you up and running with a fully managed Apache Kafka service.
+
+Disclaimer: I work for Confluent :wink:
