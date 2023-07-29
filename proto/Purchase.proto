@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package italo.dev.proto;
+
+message Purchase {
+    string item = 1;
+    double total_cost = 2;
+    string customer_id = 3;
+}

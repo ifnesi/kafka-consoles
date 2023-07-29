@@ -1,0 +1,36 @@
+
+{
+    "namespace": "confluent.io.examples.serialization.avro",
+    "name": "AssetTracking",
+    "type": "record",
+    "fields": [
+        {
+            "name": "serial_number",
+            "type": "string"
+        },
+        {
+            "name": "temperature",
+            "type": "double"
+        },
+        {
+            "name": "humidity",
+            "type": "double"
+        },
+        {
+            "name": "latitude",
+            "type": "double"
+        },
+        {
+            "name": "longitude",
+            "type": "double"
+        },
+        {
+            "name": "timestamp",
+            "type": "long"
+        },
+        {
+            "name": "open",
+            "type": "boolean"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+auth:
+  type: DISABLED
+kafka:
+  clusters:
+  - bootstrapServers: broker:9094
+    kafkaConnect:
+    - address: http://connect:8083/
+      name: Connect
+    ksqldbServer: http://ksqldb-server:8088/
+    metrics:
+      port: 9101
+      type: JMX
+    name: Kafka_docker
+    properties: {}
+    readOnly: false
+    schemaRegistry: http://schema-registry:8081
+rbac:
+  roles: []
+webclient: {}
