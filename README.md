@@ -1,4 +1,4 @@
-# Kafka Consoles (this is still a working in progress)
+# Kafka Consoles (this is still a work in progress)
 Try out three Kafka Consoles:
 - [Confluent Control Center](https://docs.confluent.io/platform/current/control-center/index.html)
 - [Kafka UI](https://github.com/provectus/kafka-ui)
