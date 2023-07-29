@@ -22,7 +22,7 @@ Run the script `./start.sh` to start the demo.
 - Kafka UI: http://localhost:8888
 - Conduktor console:
   - Go to https://signup.conduktor.io and create an user for you
-  - Create a YAML file as below
+  - Create a YAML file as shown below:
   ```
   organization:
      name: Home
