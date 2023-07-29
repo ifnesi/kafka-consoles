@@ -21,8 +21,7 @@ echo ""
 sleep 1
 
 echo "Conduktor console:"
-echo "-> Go to https://signup.conduktor.io and create an user for you"
-echo "-> http://localhost:8080 (set the credentials created on the step above)"
+echo "-> http://localhost:8080"
 echo ""
 sleep 1
 
