@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if docker is running
+echo "Check if docker is running..."
 if (! docker stats --no-stream > /dev/null 2>&1); then
     echo "ERROR: Docker Desktop not running"
     exit 1
