@@ -17,7 +17,7 @@ Additional interfaces available:
   - Install requirements (`python3 -m pip install -r requirements.txt`)
 
 ## :white_check_mark: Start the demo
-This demo will run on [Confluent Platform](https://docs.confluent.io/platform/current/overview.html) version 7.4.1 (1x, Zookeeper, 1x Broker, REST Proxy, Schema Registry, Connect with DataGen source loaded and ksqlDB).
+This demo will run on [Confluent Platform](https://docs.confluent.io/platform/current/overview.html) version [7.4.1](https://www.confluent.io/en-gb/blog/introducing-confluent-platform-7-4) (1x, Zookeeper, 1x Broker, REST Proxy, Schema Registry, Connect with DataGen source loaded and ksqlDB).
 
 Run the script `./start.sh` to start the demo.
 - Two producers will be instantiated:
