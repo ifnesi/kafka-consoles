@@ -51,12 +51,12 @@ Run the script `./start.sh` to start the demo.
 Endpoints and interfaces access:
 - Confluent Control Center:
   - http://localhost:9021
-  - docs: https://docs.confluent.io/platform/current/control-center/index.html
+  - :book::question: https://docs.confluent.io/platform/current/control-center/index.html
 - Confluent REST Proxy:
   - http://localhost:8082/v3/clusters
   - docs: https://docs.confluent.io/platform/current/kafka-rest/api.html
 - Confluent ksqldb CLI:
-  - ```docker-compose exec ksqldb-cli bash -c 'ksql -u ksqlDBUser -p ksqlDBUser http://ksqldb-server:8088'```
+  - `docker-compose exec ksqldb-cli bash -c 'ksql -u ksqlDBUser -p ksqlDBUser http://ksqldb-server:8088'`
   - docs: https://ksqldb.io/quickstart.html
 - Connect REST Proxy:
   - http://localhost:8083
