@@ -41,12 +41,12 @@ Run the script `./start.sh` to start the demo.
 - Kafka UI: http://localhost:8888
 - Conduktor platform (sign-up required):
   - Go to https://signup.conduktor.io and create an account for you
-  - Export environmemt variables:
+  - Export environment variables:
     ```
     export ADMIN_EMAIL="<as setup on Conduktor>"
     export ADMIN_PSW="<as setup on Conduktor>"
     ```
-  - Access the platform: http://localhost:8080 (user: admin@demo.dev | password: password)
+  - Access the platform: http://localhost:8080 (user: `admin@demo.dev` | password: `password`)
 
 Endpoints and interfaces access:
 - Confluent Control Center:

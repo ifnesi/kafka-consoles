@@ -12,7 +12,7 @@ echo "Checking for mandatory environment variables..."
 if [[ -z "${ADMIN_EMAIL}" ]] || [[ -z "${ADMIN_PSW}" ]]; then
     echo "ERROR: Environment variables not defined"
     echo " - Go to https://signup.conduktor.io and create an account for you"
-    echo " - Export environmemt variables:"
+    echo " - Export environment variables:"
     echo "     export ADMIN_EMAIL=<as setup on Conduktor>"
     echo "     export ADMIN_PSW=<as setup on Conduktor>"
     echo ""
