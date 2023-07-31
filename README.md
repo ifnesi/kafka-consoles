@@ -14,7 +14,7 @@ Additional interfaces available:
 - [librdkafka](https://github.com/confluentinc/librdkafka) (`brew install librdkafka`)
 - [curl](https://curl.se/) (`brew install curl`)
 - [Python 3.8+](https://www.python.org/downloads/)
-  - Install python requirements (`python3 -m pip install -r requirements.txt`)
+  - Install requirements (`python3 -m pip install -r requirements.txt`)
 
 ## Start the demo
 This demo will run on [Confluent Platform](https://docs.confluent.io/platform/current/overview.html) version 7.4.1 (1x, Zookeeper, 1x Broker, REST Proxy, Schema Registry, Connect with DataGen source loaded and ksqlDB).
