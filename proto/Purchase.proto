@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package italo.dev.proto;
+package kafkaconsoles.dev.proto;
 
 message Purchase {
     string item = 1;

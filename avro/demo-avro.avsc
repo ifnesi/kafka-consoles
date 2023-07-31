@@ -1,6 +1,6 @@
 
 {
-    "namespace": "confluent.io.examples.serialization.avro",
+    "namespace": "kafkaconsoles.dev",
     "name": "AssetTracking",
     "type": "record",
     "fields": [
@@ -26,10 +26,11 @@
         },
         {
             "name": "timestamp",
-            "type": "long"
+            "type": "long",
+            "logicalType": "timestamp-millis"
         },
         {
-            "name": "open",
+            "name": "tampered",
             "type": "boolean"
         }
     ]
