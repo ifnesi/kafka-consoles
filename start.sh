@@ -51,13 +51,22 @@ echo " - docs: https://docs.conduktor.io/platform"
 echo ""
 sleep 1
 
-echo "Waiting to start AVRO and Protobuf producers..."
-sleep 20
 
+echo -n "Waiting for Kafka cluster to be ready..."
+while [ "$(curl -s -w '%{http_code}' -o /dev/null 'http://localhost:8082/v3/clusters')" -ne 200 ]; do
+    echo -n "."
+    sleep 2
+done
+echo ""
+
+echo ""
+echo "Starting AVRO and Protobuf producers..."
+sleep 3
 ps aux | grep ' producer_avro.py'  | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1
 python3 producer_avro.py > /dev/null &
 echo " - Started AVRO producer (topic: demo-avro)"
 
+sleep 3
 ps aux | grep ' producer_proto.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1
 python3 producer_proto.py > /dev/null &
 echo " - Started Protobuf producer (topic: demo-protobuf)"

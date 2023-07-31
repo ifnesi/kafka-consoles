@@ -12,6 +12,7 @@ Additional interfaces available:
 ## Requirements:
 - [Docker Desktop + Compose](https://www.docker.com/products/docker-desktop)
 - [librdkafka](https://github.com/confluentinc/librdkafka) (`brew install librdkafka`)
+- [curl](https://curl.se/) (`brew install curl`)
 - [Python 3.8+](https://www.python.org/downloads/)
   - Install python requirements (`python3 -m pip install -r requirements.txt`)
 
