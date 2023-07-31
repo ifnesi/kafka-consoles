@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if docker is running
+echo "Check if docker is running..."
 if (! docker stats --no-stream > /dev/null 2>&1); then
     echo "ERROR: Please start Docker Desktop, then run the './start.sh' script"
     exit 1
@@ -11,24 +11,41 @@ docker compose up -d
 
 echo ""
 echo "Confluent Control Center:"
-echo "-> http://localhost:9021"
+echo " - http://localhost:9021"
+echo " - docs: https://docs.confluent.io/platform/current/control-center/index.html"
+echo "Confluent REST Proxy:"
+echo " - http://localhost:8082/v3/clusters"
+echo " - docs: https://docs.confluent.io/platform/current/kafka-rest/api.html"
+echo "Confluent ksqldb CLI:"
+echo " - docker-compose exec ksqldb-cli bash -c 'ksql -u ksqlDBUser -p ksqlDBUser http://ksqldb-server:8088'"
+echo " - docs: https://ksqldb.io/quickstart.html"
+echo "Connect REST Proxy:"
+echo " - http://localhost:8083"
+echo " - docs: https://docs.confluent.io/platform/current/connect/references/restapi.html"
 echo ""
 sleep 1
 
 echo "Kafka UI:"
-echo "-> http://localhost:8888"
+echo " - http://localhost:8888"
+echo " - docs: https://github.com/provectus/kafka-ui"
 echo ""
 sleep 1
 
-echo "Conduktor console:"
-echo "-> http://localhost:8080"
+echo "Conduktor platform:"
+echo " - http://localhost:8080"
+echo " - docs: https://docs.conduktor.io/platform"
 echo ""
 sleep 1
 
 echo "Waiting to start AVRO and Protobuf producers..."
 sleep 20
+
+ps aux | grep ' producer_avro.py'  | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1
 python3 producer_avro.py > /dev/null &
-echo "Started AVRO producer (topic: demo-avro)"
+echo " - Started AVRO producer (topic: demo-avro)"
+
+ps aux | grep ' producer_proto.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1
 python3 producer_proto.py > /dev/null &
-echo "Started Protobuf producer (topic: demo-protobuf)"
+echo " - Started Protobuf producer (topic: demo-protobuf)"
+
 echo ""
