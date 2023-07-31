@@ -1,3 +1,4 @@
+import sys
 import time
 import random
 import argparse
@@ -14,18 +15,8 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.avro import AvroSerializer
 
 
-SERIAL_NUMBER = (
-    "ATRK001",
-    "ATRK002",
-    "ATRK003",
-    "ATRK004",
-    "ATRK005",
-    "ATRK006",
-    "ATRK007",
-    "ATRK008",
-    "ATRK009",
-    "ATRK010",
-)
+# Global variables
+SERIAL_NUMBER = [f"atrk_{i:02d}" for i in range(1, 26)]
 
 
 class AssetTracking(BaseModel):
@@ -35,11 +26,15 @@ class AssetTracking(BaseModel):
     latitude: float
     longitude: float
     timestamp: int
-    open: bool
+    tampered: bool
 
 
-def genRandom() -> float:
-    return (-1 if random.random() > 0.5 else 1) * random.random()
+def genRandom(ndigits: int = 2) -> float:
+    return (
+        (-1 if random.random() > 0.5 else 1)
+        * int(random.random() * 10**ndigits)
+        / 10**ndigits
+    )
 
 
 def dataDict(
@@ -74,7 +69,7 @@ def deliveryReport(err, msg):
     """
 
     if err is not None:
-        print(f"Delivery failed for Data record {msg.key()}: {err}")
+        print(f"Delivery failed for Data record {msg.key()}: {err}", file=sys.stderr)
         return
     print(
         f"Data record {msg.key().decode('utf-8')} successfully produced to {msg.topic()}:{msg.partition()} at offset {msg.offset()}"
@@ -111,10 +106,10 @@ def main(args):
             serial_numer = random.choice(SERIAL_NUMBER)
             if initial_data.get(serial_numer) is None:
                 initial_data[serial_numer] = {
-                    "temperature": random.randint(-2000, 4500) / 100,
-                    "humidity": random.randint(0, 10000) / 100,
-                    "latitude": random.randint(-900000, 900000) / 10000,
-                    "longitude": random.randint(-1800000, 1800000) / 10000,
+                    "temperature": int(random.randint(-2000, 4500)) / 100,
+                    "humidity": int(random.randint(0, 10000)) / 100,
+                    "latitude": int(random.randint(-900000, 900000)) / 10000,
+                    "longitude": int(random.randint(-1800000, 1800000)) / 10000,
                 }
             else:
                 initial_data[serial_numer]["temperature"] += genRandom()
@@ -125,14 +120,14 @@ def main(args):
                     -90,
                     min(
                         90,
-                        initial_data[serial_numer]["latitude"] + genRandom() / 100,
+                        initial_data[serial_numer]["latitude"] + genRandom(6),
                     ),
                 )
                 initial_data[serial_numer]["longitude"] = max(
                     -180,
                     min(
                         180,
-                        initial_data[serial_numer]["longitude"] + genRandom() / 100,
+                        initial_data[serial_numer]["longitude"] + genRandom(6),
                     ),
                 )
 
@@ -143,7 +138,7 @@ def main(args):
                 latitude=initial_data[serial_numer]["latitude"],
                 longitude=initial_data[serial_numer]["longitude"],
                 timestamp=int(datetime.datetime.utcnow().timestamp() * 1000),
-                open=(random.random() > 0.9),
+                tampered=(random.random() > 0.9),
             )
             producer.produce(
                 topic=args.topic,
@@ -164,15 +159,16 @@ def main(args):
                 on_delivery=deliveryReport,
             )
         except KeyboardInterrupt:
-            print("CTRL-C pressed by user")
+            print("CTRL-C pressed by user", file=sys.stderr)
             break
 
-        except ValueError:
-            print("Invalid input, discarding record...")
-            continue
+        except ValueError as err_1:
+            print(f"Invalid input, discarding record: {err_1}", file=sys.stderr)
 
-        finally:
-            time.sleep(0.5)
+        except Exception as err_2:
+            print(f"Generic error: {err_2}", file=sys.stderr)
+
+        time.sleep(0.5)
 
     print("\nFlushing records...")
     producer.flush()

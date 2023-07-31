@@ -1,8 +1,8 @@
 # brew install protobuf
 # protoc -I=. --python_out=. ./proto/Purchase.proto
 
+import sys
 import time
-import uuid
 import random
 import argparse
 import platform
@@ -16,6 +16,11 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 
 from proto import Purchase_pb2 as Purchase
+
+
+# Global variables
+CUSTOMER_ID = [f"user_{i:02d}" for i in range(1, 26)]
+ITEM_ID = [f"sku_{i:02d}" for i in range(1, 101)]
 
 
 def delivery_report(err, msg):
@@ -60,10 +65,11 @@ def main(args):
         # Serve on_delivery callbacks from previous calls to produce()
         producer.poll(0.0)
         try:
+            customer_id = random.choice(CUSTOMER_ID)
             purchase = Purchase.Purchase(
-                item=uuid.uuid4().hex,
-                total_cost=random.randint(0, 99999) / 100,
-                customer_id=uuid.uuid4().hex,
+                item=random.choice(ITEM_ID),
+                total_cost=round(random.randint(100, 99999) / 100, 2),
+                customer_id=customer_id,
             )
             producer.produce(
                 topic=topic,
@@ -73,7 +79,7 @@ def main(args):
                     "node": platform.node(),
                     "environment": "test",
                 },
-                key=uuid.uuid4().hex,
+                key=customer_id,
                 value=protobuf_serializer(
                     purchase,
                     SerializationContext(topic, MessageField.VALUE),
@@ -81,16 +87,17 @@ def main(args):
                 on_delivery=delivery_report,
             )
 
-        except (KeyboardInterrupt, EOFError):
-            print("^C pressed by user")
+        except KeyboardInterrupt:
+            print("CTRL-C pressed by user", file=sys.stderr)
             break
 
-        except ValueError as err:
-            print(f"Invalid input, discarding record: {err}")
-            continue
+        except ValueError as err_1:
+            print(f"Invalid input, discarding record: {err_1}", file=sys.stderr)
 
-        finally:
-            time.sleep(0.5)
+        except Exception as err_2:
+            print(f"Generic error: {err_2}", file=sys.stderr)
+
+        time.sleep(0.5)
 
     print("\nFlushing records...")
     producer.flush()
