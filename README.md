@@ -16,7 +16,7 @@ Additional interfaces available:
 - [Python 3.8+](https://www.python.org/downloads/)
   - Install requirements (`python3 -m pip install -r requirements.txt`)
 
-## Start the demo
+## :white_check_mark: Start the demo
 This demo will run on [Confluent Platform](https://docs.confluent.io/platform/current/overview.html) version 7.4.1 (1x, Zookeeper, 1x Broker, REST Proxy, Schema Registry, Connect with DataGen source loaded and ksqlDB).
 
 Run the script `./start.sh` to start the demo.
@@ -54,21 +54,21 @@ Endpoints and interfaces access:
   - :book::question: https://docs.confluent.io/platform/current/control-center/index.html
 - Confluent REST Proxy:
   - http://localhost:8082/v3/clusters
-  - docs: https://docs.confluent.io/platform/current/kafka-rest/api.html
+  - :book::question: https://docs.confluent.io/platform/current/kafka-rest/api.html
 - Confluent ksqldb CLI:
   - `docker-compose exec ksqldb-cli bash -c 'ksql -u ksqlDBUser -p ksqlDBUser http://ksqldb-server:8088'`
-  - docs: https://ksqldb.io/quickstart.html
+  - :book::question: https://ksqldb.io/quickstart.html
 - Connect REST Proxy:
   - http://localhost:8083
-  - docs: https://docs.confluent.io/platform/current/connect/references/restapi.html
+  - :book::question: https://docs.confluent.io/platform/current/connect/references/restapi.html
 - Kafka UI:
   - http://localhost:8888
-  - docs: https://github.com/provectus/kafka-ui
+  - :book::question: https://github.com/provectus/kafka-ui
 - Conduktor platform:
   - http://localhost:8080 (user: admin@demo.dev | password: password)
-  - docs: https://docs.conduktor.io/platform
+  - :book::question: https://docs.conduktor.io/platform
 
-## Stop the demo
+## :x: Stop the demo
 Run the script `./stop.sh` to stop the demo.
 
 # External References
