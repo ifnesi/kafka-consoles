@@ -1,0 +1,24 @@
+organization:
+  name: demo
+
+admin:
+  email: "${ADMIN_EMAIL}"
+  password: "${ADMIN_PSW}"
+
+auth:
+  demo-users:
+    - email: admin@demo.dev
+      password: password
+      groups:
+        - ADMIN
+
+clusters:
+  - id: default
+    name: Confluent Kafka Cluster
+    color: "#0079FF"
+    ignoreUntrustedCertificate: false
+    bootstrapServers: "broker:9094"
+    properties:
+    schemaRegistry:
+      url: "http://schema-registry:8081"
+      ignoreUntrustedCertificate: false

@@ -36,24 +36,16 @@ Run the script `./start.sh` to start the demo.
       - item (string)
       - total_cost (double)
       - customer_id (string)
-- Confluent Control Center (already setup): http://localhost:9021
-- Kafka UI (already setup): http://localhost:8888
-- Conduktor platform (setup required):
-  - Go to https://signup.conduktor.io and create an user for you
-  - Create a YAML file as shown below and have it saved locally:
-  ```
-  organization:
-     name: Home
-  admin:
-     email: <as per created on conduktor.io>
-     password: <as per created on conduktor.io>
-  ```
-  - Access the platform: http://localhost:8080
-  - Upload the YAML file (option `Upload YAML`) and sign-in
-  - Endpoints (for when setting up your Kafka cluster on the platform):
-    - Kafka Broker: broker:9094 (auth None)
-    - Kafka connect: http://connect:8083 (no security)
-    - Schema Registry: http://schema-registry:8081 (no security)
+- Confluent Control Center: http://localhost:9021
+- Kafka UI: http://localhost:8888
+- Conduktor platform (sign-up required):
+  - Go to https://signup.conduktor.io and create an account for you
+  - Export environmemt variables:
+    ```
+    export ADMIN_EMAIL="<as setup on Conduktor>"
+    export ADMIN_PSW="<as setup on Conduktor>"
+    ```
+  - Access the platform: http://localhost:8080 (user: admin@demo.dev | password: password)
 
 Endpoints and interfaces access:
 - Confluent Control Center:
@@ -72,7 +64,7 @@ Endpoints and interfaces access:
   - http://localhost:8888
   - docs: https://github.com/provectus/kafka-ui
 - Conduktor platform:
-  - http://localhost:8080
+  - http://localhost:8080 (user: admin@demo.dev | password: password)
   - docs: https://docs.conduktor.io/platform
 
 ## Stop the demo

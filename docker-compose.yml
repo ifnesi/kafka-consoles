@@ -167,9 +167,9 @@ services:
     container_name: rest-proxy
     environment:
       KAFKA_REST_HOST_NAME: rest-proxy
-      KAFKA_REST_BOOTSTRAP_SERVERS: 'broker:9094'
+      KAFKA_REST_BOOTSTRAP_SERVERS: "broker:9094"
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
-      KAFKA_REST_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+      KAFKA_REST_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
 
   ## Conduktor
   postgresql:
@@ -180,24 +180,39 @@ services:
     environment:
       POSTGRES_DB: "conduktor-platform"
       POSTGRES_USER: "conduktor"
-      POSTGRES_PASSWORD: "change_me"
+      POSTGRES_PASSWORD: "password"
       POSTGRES_HOST_AUTH_METHOD: "scram-sha-256"
 
   conduktor-platform:
-    image: conduktor/conduktor-platform:latest
-    depends_on:
-      - postgresql
+    image: conduktor/conduktor-platform:1.16.1
     ports:
-      - "8080:8080"
+      - 8080:8080
     volumes:
       - ./conduktor_data:/var/conduktor
+      - type: bind
+        source: "./platform-config.yml"
+        target: /opt/conduktor/platform-config.yaml
+        read_only: true
+    depends_on:
+      - broker
+      - connect
+      - schema-registry
     environment:
-      CDK_ONBOARDING_MODE: "always"
-      CDK_DATABASE_URL: "postgresql://conduktor:change_me@postgresql:5432/conduktor-platform"
+      CDK_IN_CONF_FILE: /opt/conduktor/platform-config.yaml
+      CDK_DATABASE_URL: "postgresql://conduktor:password@postgresql:5432/conduktor-platform"
+      KAFKA_BOOTSTRAP_SERVER: broker:9094
+      SR_SERVER: "http://schema-registry:8081"
+      ORGANIZATION_NAME: "demo"
+      ADMIN_EMAIL: "admin@demo.dev"
+      ADMIN_PSW: "password"
     healthcheck:
-      test: curl -f http://localhost:8080/platform/api/modules/health/live || exit 1
-      interval: 10s
-      start_period: 10s
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail http://localhost:8080/platform/api/modules/health/live"
+        ]
+      interval: 30s
+      start_period: 120s # Leave time for the psql init scripts to run
       timeout: 5s
       retries: 3
 
@@ -208,6 +223,6 @@ services:
     ports:
       - "8888:8080"
     environment:
-      DYNAMIC_CONFIG_ENABLED: 'true'
+      DYNAMIC_CONFIG_ENABLED: "true"
     volumes:
       - ./kafkaui:/etc/kafkaui

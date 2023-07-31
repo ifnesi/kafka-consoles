@@ -3,8 +3,22 @@
 echo "Check if docker is running..."
 if (! docker stats --no-stream > /dev/null 2>&1); then
     echo "ERROR: Please start Docker Desktop, then run the './start.sh' script"
+    echo ""
     exit 1
 fi
+echo ""
+
+echo "Checking for mandatory environment variables..."
+if [[ -z "${ADMIN_EMAIL}" ]] || [[ -z "${ADMIN_PSW}" ]]; then
+    echo "ERROR: Environment variables not defined"
+    echo " - Go to https://signup.conduktor.io and create an account for you"
+    echo " - Export environmemt variables:"
+    echo "     export ADMIN_EMAIL=<as setup on Conduktor>"
+    echo "     export ADMIN_PSW=<as setup on Conduktor>"
+    echo ""
+    exit 1
+fi
+echo ""
 
 echo "Starting up docker compose..."
 docker compose up -d
@@ -32,7 +46,7 @@ echo ""
 sleep 1
 
 echo "Conduktor platform:"
-echo " - http://localhost:8080"
+echo " - http://localhost:8080 (user: admin@demo.dev | password: password)"
 echo " - docs: https://docs.conduktor.io/platform"
 echo ""
 sleep 1
