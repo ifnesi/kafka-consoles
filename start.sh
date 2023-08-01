@@ -11,7 +11,7 @@ if [ $# -gt 0 ]; then
     elif [ $1 == '-h' ]; then
         echo ""
         echo "Usage:"
-        echo "  $0 -nc  # Bypass the Conduktor platform demo"
+        echo "  $0 -nc # Bypass the Conduktor platform demo"
         echo "  $0 -h  # View help"
         echo ""
         exit 1
