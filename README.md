@@ -19,7 +19,8 @@ Additional interfaces available:
 ## :white_check_mark: Start the demo
 This demo will run on [Confluent Platform](https://docs.confluent.io/platform/current/overview.html) version [7.4.1](https://www.confluent.io/en-gb/blog/introducing-confluent-platform-7-4) (1x, Zookeeper, 1x Broker, REST Proxy, Schema Registry, Connect with DataGen source loaded and ksqlDB).
 
-Run the script `./start.sh` to start the demo.
+Run the script `./start.sh` to start the demo. Alternativelly, run `./start.sh -nc` to bypass the Conduktor platform demo.
+
 - Two producers will be instantiated:
   - `producer_avro.py` (AVRO): Producing to the topic `demo-avro`
     - Asset tracking device
