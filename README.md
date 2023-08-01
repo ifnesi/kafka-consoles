@@ -48,6 +48,7 @@ Run the script `./start.sh` to start the demo. Alternativelly, run `./start.sh -
     export ADMIN_PSW="<as setup on Conduktor>"
     ```
   - Access the platform: http://localhost:8080 (user: `admin@demo.dev` | password: `password`)
+  - Alternativelly, run `./start.sh -nc` to bypass the Conduktor platform demo
 
 Endpoints and interfaces access:
 - Confluent Control Center:
