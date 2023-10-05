@@ -39,14 +39,6 @@ if [ $by_pass_conduktor -eq 0 ]; then
 fi
 echo ""
 
-echo "Check if docker is running..."
-if (! docker stats --no-stream > /dev/null 2>&1); then
-    echo "ERROR: Please start Docker Desktop, then run the '$0' script"
-    echo ""
-    exit 1
-fi
-echo ""
-
 echo "Starting up docker compose..."
 docker compose up -d
 
@@ -69,6 +61,12 @@ sleep 1
 echo "Kafka UI:"
 echo " - http://localhost:8888"
 echo " - docs: https://github.com/provectus/kafka-ui"
+echo ""
+sleep 1
+
+echo "AKHQ:"
+echo " - http://localhost:9000"
+echo " - docs: https://akhq.io/docs"
 echo ""
 sleep 1
 
