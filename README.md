@@ -4,6 +4,7 @@ Kafka Consoles to try out:
 - [Kafka UI](https://github.com/provectus/kafka-ui)
 - [Conduktor platform](https://docs.conduktor.io/platform/)
 - [AKHQ](https://akhq.io/)
+- [Redpanda Console](https://redpanda.com/redpanda-console-kafka-ui)
 
 Additional interfaces available:
 - [Confluent REST Proxy](https://docs.confluent.io/platform/current/kafka-rest/index.html)
@@ -73,6 +74,10 @@ Endpoints and interfaces access:
 - AKHQ:
   - http://localhost:9000
   - :book::question: https://akhq.io/docs/
+- Redpanda Console:
+  - http://localhost:9999
+  - :book::question: https://redpanda.com/redpanda-console-kafka-ui
+
 
 ## :x: Stop the demo
 Run the script `./stop.sh` to stop the demo.
@@ -82,6 +87,7 @@ Run the script `./stop.sh` to stop the demo.
 - Kafka UI: https://github.com/provectus/kafka-ui
 - Conduktor platform: https://docs.conduktor.io/platform/
 - AKHQ: https://akhq.io
+- Redpanda Console: https://redpanda.com/redpanda-console-kafka-ui
 - librdkafka (the Apache Kafka C/C++ client library): https://github.com/confluentinc/librdkafka
 
 Check out [Confluent's Developer portal](https://developer.confluent.io), it has free courses, documents, articles, blogs, podcasts and so many more content to get you up and running with a fully managed Apache Kafka service.

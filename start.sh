@@ -70,6 +70,12 @@ echo " - docs: https://akhq.io/docs"
 echo ""
 sleep 1
 
+echo "Redpanda Console:"
+echo " - http://localhost:9999"
+echo " - docs: https://redpanda.com/redpanda-console-kafka-ui"
+echo ""
+sleep 1
+
 if [ $by_pass_conduktor -eq 0 ]; then
     echo "Conduktor platform:"
     echo " - http://localhost:8080 (user: admin@demo.dev | password: password)"
